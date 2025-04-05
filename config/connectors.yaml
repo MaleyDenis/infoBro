@@ -1,0 +1,51 @@
+# connectors.yaml - Configuration file for connectors
+
+# Telegram connector
+telegram:
+  enabled: true
+  channels:
+    - name: "Golang News"
+      url: "https://t.me/golang_news"
+    - name: "Rust Language"
+      url: "https://t.me/rustlang"
+    - name: "Python Insider"
+      url: "https://t.me/python"
+  credentials:
+    api_id: "your_api_id"
+    api_hash: "your_api_hash"
+
+# RSS connector
+rss:
+  enabled: true
+  feeds:
+    - name: "Hacker News"
+      url: "https://news.ycombinator.com/rss"
+    - name: "The Verge"
+      url: "https://www.theverge.com/rss/index.xml"
+    - name: "DEV Community"
+      url: "https://dev.to/feed"
+  settings:
+    timeout: 30s
+    user_agent: "NewsAggregator/1.0"
+
+# Reddit connector
+reddit:
+  enabled: true
+  subreddits:
+    - name: "golang"
+      url: "https://www.reddit.com/r/golang"
+    - name: "programming"
+      url: "https://www.reddit.com/r/programming"
+    - name: "rust"
+      url: "https://www.reddit.com/r/rust"
+    - name: "machinelearning"
+      url: "https://www.reddit.com/r/MachineLearning"
+  settings:
+    timeout: 30s
+    user_agent: "NewsAggregator/1.0 (by /u/your_username)"
+    client_id: "your_client_id"
+    client_secret: "your_client_secret"
+    username: "your_username"
+    password: "your_password"
+    limit: 25 # Number of posts to fetch per subreddit
+    sort: "hot" # Options: hot, new, top, rising
