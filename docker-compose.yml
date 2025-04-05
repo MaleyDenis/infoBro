@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: infobro-mongodb
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - infobro-network
+    restart: unless-stopped
+
+  redis:
+    image: redis:alpine
+    container_name: infobro-redis
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - infobro-network
+    restart: unless-stopped
+
+  api:
+    build: .
+    container_name: infobro-api
+    depends_on:
+      - mongodb
+      - redis
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017
+      - MONGO_DB=infoBro
+      - REDIS_ADDR=redis:6379
+      - HTTP_ADDR=:8080
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./config:/app/config
+    networks:
+      - infobro-network
+    restart: unless-stopped
+    command: ["./infobro", "--mongo-uri", "mongodb://mongodb:27017", "--redis-addr", "redis:6379"]
+    
+  frontend:
+    build: 
+      context: ./web
+      dockerfile: Dockerfile
+    container_name: infobro-frontend
+    depends_on:
+      - api
+    ports:
+      - "3000:80"
+    networks:
+      - infobro-network
+    restart: unless-stopped
+
+networks:
+  infobro-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+  redis_data:
