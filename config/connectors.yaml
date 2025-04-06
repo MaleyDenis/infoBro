@@ -32,20 +32,14 @@ rss:
 reddit:
   enabled: true
   subreddits:
-    - name: "golang"
-      url: "https://www.reddit.com/r/golang"
-    - name: "programming"
-      url: "https://www.reddit.com/r/programming"
-    - name: "rust"
-      url: "https://www.reddit.com/r/rust"
-    - name: "machinelearning"
-      url: "https://www.reddit.com/r/MachineLearning"
+    - name: "openai"
+      url: "https://www.reddit.com/r/openai"
   settings:
     timeout: 30s
     user_agent: "NewsAggregator/1.0 (by /u/your_username)"
-    client_id: "your_client_id"
-    client_secret: "your_client_secret"
-    username: "your_username"
-    password: "your_password"
+    client_id: "E-pT2_4nqzd0C7IBPAmSkA"
+    client_secret: "mz_7fMTAzjtewggF5GImQMELMVYfTQ"
+    username: "Educational_Heat5353"
+    password: "YVr3HwBiYPdHYAhx@KA"
     limit: 25 # Number of posts to fetch per subreddit
     sort: "hot" # Options: hot, new, top, rising
